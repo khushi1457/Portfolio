@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Khushi Gandhi</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F5F0E8;
+    --cream-dark: #EDE7D9;
+    --ink: #1A1714;
+    --ink-mid: #5C5248;
+    --ink-light: #9C9189;
+    --accent: #B5763A;
+    --accent-light: #E8D5BE;
+    --border: rgba(26,23,20,0.1);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 3rem;
+    background: var(--cream);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--ink-mid);
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 3rem 5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero-eyebrow {
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+  }
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3.5rem, 9vw, 8rem);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    max-width: 520px;
+    color: var(--ink-mid);
+    font-size: 1rem;
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+    text-align: center;
+  }
+
+  .hero-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 0.7rem 1.75rem;
+    background: var(--ink);
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: background 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--accent); }
+
+  .btn-ghost {
+    display: inline-block;
+    padding: 0.7rem 1.75rem;
+    border: 1px solid var(--border);
+    color: var(--ink-mid);
+    text-decoration: none;
+    font-size: 0.82rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    right: 3rem;
+    writing-mode: vertical-rl;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+
+  section {
+    padding: 6rem 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .section-num {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    min-width: 28px;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+
+  .exp-list { display: flex; flex-direction: column; gap: 0; }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 2rem;
+    padding: 2.5rem 0;
+    border-top: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+
+  .exp-item:last-child { border-bottom: 1px solid var(--border); }
+
+  .exp-meta { padding-top: 0.15rem; }
+
+  .exp-date {
+    font-size: 0.78rem;
+    color: var(--ink-light);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.4rem;
+  }
+
+  .exp-company {
+    font-size: 0.82rem;
+    font-style: italic;
+    color: var(--ink-mid);
+  }
+
+  .exp-role {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .exp-tag {
+    display: inline-block;
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+    margin-bottom: 0.9rem;
+  }
+
+  .exp-body {
+    color: var(--ink-mid);
+    font-size: 0.92rem;
+    line-height: 1.75;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+
+  .exp-bullets li {
+    padding-left: 1rem;
+    position: relative;
+    font-size: 0.88rem;
+    color: var(--ink-mid);
+    line-height: 1.6;
+  }
+
+  .exp-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.75rem;
+    top: 0.15rem;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .skill-block {
+    background: var(--cream);
+    padding: 2rem 1.75rem;
+    transition: background 0.2s;
+  }
+
+  .skill-block:hover { background: var(--cream-dark); }
+
+  .skill-cat {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .skill-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .skill-pill {
+    font-size: 0.82rem;
+    color: var(--ink-mid);
+    background: var(--cream-dark);
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+  }
+
+  .extra-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+  }
+
+  .extra-card {
+    padding: 2rem;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    transition: border-color 0.2s;
+  }
+
+  .extra-card:hover { border-color: var(--accent); }
+
+  .extra-icon { font-size: 1.4rem; margin-bottom: 1rem; }
+
+  .extra-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+
+  .extra-desc {
+    font-size: 0.85rem;
+    color: var(--ink-mid);
+    line-height: 1.65;
+  }
+
+  .contact-inner {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .contact-tagline {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    line-height: 1.2;
+    margin-bottom: 2rem;
+  }
+
+  .contact-tagline em { font-style: italic; color: var(--accent); }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+
+  .contact-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .contact-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    width: 70px;
+    flex-shrink: 0;
+  }
+
+  .contact-val {
+    color: var(--ink-mid);
+    font-size: 0.92rem;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .contact-val:hover { color: var(--accent); }
+
+  footer {
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-note {
+    font-size: 0.78rem;
+    color: var(--ink-light);
+    letter-spacing: 0.04em;
+  }
+
+  @media (max-width: 700px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.2rem; }
+    .hero, section { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.75rem; }
+    footer { flex-direction: column; gap: 0.5rem; align-items: flex-start; padding: 1.5rem; }
+    .hero-scroll { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">KG</a>
+  <ul class="nav-links">
+    <li><a href="#experience">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#extras">More</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="position:relative; padding-top: 0;">
+  <p class="hero-eyebrow">IT Engineering Student · Mumbai</p>
+  <h1>Khushi<em> <br>Gandhi</em></h1>
+  <p class="hero-sub">Building at the intersection of technology and community — from AI internships to founding a 40-member organization, I lead with curiosity and follow through.</p>
+  <div class="hero-links">
+    <a class="btn-primary" href="#experience">View my work</a>
+    <a class="btn-ghost" href="https://linkedin.com/in/khushi-gandhi-28801431b/" target="_blank">LinkedIn ↗</a>
+  </div>
+  <span class="hero-scroll">Scroll to explore</span>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Experience</h2>
+  </div>
+  <div class="exp-list">
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <p class="exp-date">05/2026 – Present</p>
+        <p class="exp-company">Google</p>
+      </div>
+      <div>
+        <p class="exp-role">Gemini AI Internship</p>
+        <span class="exp-tag">Current</span>
+        <p class="exp-body">Selected as a Google Student Ambassador — working within the Gemini AI ecosystem to explore and apply cutting-edge AI tools in real-world contexts.</p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <p class="exp-date">10/2025 – 05/2026</p>
+        <p class="exp-company">ISTE Technical Council, KJ Somaiya</p>
+      </div>
+      <div>
+        <p class="exp-role">FY Representative</p>
+        <ul class="exp-bullets">
+          <li>Hosted Thinksprint, the pre-event for Prakalpa 2026, managing stage proceedings and participant engagement.</li>
+          <li>Conducted an AI webinar with 100+ participants, coordinating sessions and driving attendee engagement.</li>
+          <li>Managed the software operations track at Prakalpa 2026, a national paper presentation event, securing ₹10,000 in sponsorships through corporate outreach.</li>
+          <li>Gained hands-on exposure in event planning, software management, and operations alongside senior council members.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-meta">
+        <p class="exp-date">2023 – Present</p>
+        <p class="exp-company">Interact Club of Young Achievers, Latur</p>
+      </div>
+      <div>
+        <p class="exp-role">Founder President</p>
+        <span class="exp-tag">Leadership</span>
+        <ul class="exp-bullets">
+          <li>Founded and led a 40-member organization, executing 25+ community, technical, and professional development initiatives.</li>
+          <li>Secured ₹30,000–35,000 in sponsorships through strategic corporate outreach, proposal pitching, and partnership building.</li>
+          <li>Planned Latur's first Rubik's Cube Tournament — managing budgeting, marketing, and operations end-to-end.</li>
+          <li>Organized a global finance webinar for teenagers with 1,000+ participants across multiple countries.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" style="padding-top: 5rem; padding-bottom: 5rem;">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Education</h2>
+  </div>
+  <div class="exp-list">
+    <div class="exp-item">
+      <div class="exp-meta">
+        <p class="exp-date">2025 – Present</p>
+      </div>
+      <div>
+        <p class="exp-role">B.Tech, Information Technology</p>
+        <p class="exp-body">KJ Somaiya College of Engineering, Mumbai</p>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-meta">
+        <p class="exp-date">2025</p>
+      </div>
+      <div>
+        <p class="exp-role">12th — Maharashtra Board</p>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-meta">
+        <p class="exp-date">2023</p>
+      </div>
+      <div>
+        <p class="exp-role">10th — CBSE</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Skills</h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-block">
+      <p class="skill-cat">Languages</p>
+      <div class="skill-items">
+        <span class="skill-pill">C</span>
+        <span class="skill-pill">Java</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <p class="skill-cat">Frontend</p>
+      <div class="skill-items">
+        <span class="skill-pill">HTML</span>
+        <span class="skill-pill">CSS</span>
+        <span class="skill-pill">React.js</span>
+        <span class="skill-pill">Phaser.js</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <p class="skill-cat">Tools</p>
+      <div class="skill-items">
+        <span class="skill-pill">Git</span>
+        <span class="skill-pill">GitHub</span>
+        <span class="skill-pill">VS Code</span>
+        <span class="skill-pill">Canva</span>
+        <span class="skill-pill">Ms Office</span>
+        <span class="skill-pill">Figma</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <p class="skill-cat">Soft Skills</p>
+      <div class="skill-items">
+        <span class="skill-pill">Leadership</span>
+        <span class="skill-pill">Communication</span>
+        <span class="skill-pill">Problem Solving</span>
+        <span class="skill-pill">Marketing</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXTRACURRICULARS -->
+<section id="extras">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Beyond Work</h2>
+  </div>
+  <div class="extra-grid">
+    <div class="extra-card">
+      <div class="extra-icon">⚡</div>
+      <p class="extra-title">Swift Workshop</p>
+      <p class="extra-desc">Completed Swift Workshop by Swift Bharat — building iOS development fundamentals.</p>
+    </div>
+    <div class="extra-card">
+      <div class="extra-icon">🤝</div>
+      <p class="extra-title">Robin Hood Army</p>
+      <p class="extra-desc">Volunteered to teach basic education to underprivileged children and organize food distribution drives.</p>
+    </div>
+    <div class="extra-card">
+      <div class="extra-icon">⚽</div>
+      <p class="extra-title">State Level Football</p>
+      <p class="extra-desc">Represented at state level competition — sharpening teamwork and discipline on the field.</p>
+    </div>
+    <div class="extra-card">
+      <div class="extra-icon">✏️</div>
+      <p class="extra-title">Drawing — Merit</p>
+      <p class="extra-desc">Achieved merit in Elementary & Intermediate Drawing Exams, showcasing a creative, artistic side.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-header" style="justify-content: center;">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Let's connect</h2>
+    </div>
+    <p class="contact-tagline">Open to opportunities,collaborations and conversations.</p>
+    <div class="contact-links">
+      <div class="contact-row">
+        <span class="contact-label">Email</span>
+        <a class="contact-val" href="mailto:khushigandhi1457@gmail.com">khushigandhi1457@gmail.com</a>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Phone</span>
+        <a class="contact-val" href="tel:8767750713">8767750713</a>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">LinkedIn</span>
+        <a class="contact-val" href="https://linkedin.com/in/khushi-gandhi-28801431b/" target="_blank">khushi-gandhi-28801431b ↗</a>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Location</span>
+        <span class="contact-val">Mumbai, Maharashtra</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-note">Khushi Gandhi · 2026</span>
+  <span class="footer-note">IT Engineering · KJ Somaiya</span>
+</footer>
+
+</body>
+</html>
